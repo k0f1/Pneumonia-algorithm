@@ -32,7 +32,7 @@ When a test with high recall returns a negative result, you can be pretty confid
 
 ### 2. Algorithm Design and Function
 
-<< Insert Algorithm Flowchart >>
+**Algorithm Fow chart**
 The check_dicom function reads in a .dcm file, checks the important fields for our device, and returns a numpy array of just the imaging data.
 
 The function, check_dicom(), is required to check the image type(MODALITY), Body Part Examined (Chest), and Image position (PA or AP ) for each DICOM image and check if the input to the algorithm is valid to be predicted by our algorithm or not.

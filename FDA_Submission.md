@@ -26,6 +26,9 @@ The device study was based on images from people of age 20- 70 and was significa
     * Sensitivity: 1
     * Specificity: 0
 
+For this algorithm, missing a detection of Pneumonia is not acceptable as human life and depends on it. False negative may slow down clinicians urgency to look at the patient xray for a physical examination. Therefore False Negative results have more impact than a False positive. Accordingly, the threshold for the algorithm has been weighed in favour of recall(sensitivity). 
+
+When a test with high recall returns a negative result, you can be pretty confident that the result is truely negative. Recall does not take into account FP though, so you may still be labelling alot of negative cases as positive. So recall are good for screening tests.
 
 ### 2. Algorithm Design and Function
 
@@ -60,7 +63,7 @@ Here is the pretrained model
 
 
 
-   ![Loaded Model](/Figures/pre_trained_model.jpg)
+   ![Loaded Model](/Figure/pre_trained_model.jpeg)
 
 
 Seven fully connected layers were added to the pretrained model as classifiers. Of the 7 layers, three were Dropout layers to prevent overfitting.
@@ -121,6 +124,11 @@ Seven fully connected layers were added to the pretrained model as classifiers. 
   _This is plot of two important parameters for the calculation of F1 Score._
   
   ![Precision recall curve](/Figure/pr.jpeg)
+  
+  _This is a plot of F1 Scores v Thresholds._
+  
+  ![F1 Scores plot](/Figure/f1-scores.jpeg)
+
 
 
 **Final Threshold and Explanation:**
@@ -141,7 +149,7 @@ The threshold value from the for recall of 0.8 was chosed because, it is importa
    
    _Sizes of train and validation data after discarding excess data_
    
-   ![Training data after discarding excess negative data](/Figure/train-data-b4.jpeg)
+   ![Training data after discarding excess negative data](/Figure/train-data-after.jpeg)
 
 
 
@@ -155,7 +163,7 @@ The threshold value from the for recall of 0.8 was chosed because, it is importa
    
    _Validation set must contain 20:80 ratio (positive to negative)_
    
-   ![Validation data after split](/Figure/val-data-b4.jpeg)
+   ![Validation data after split](/Figure/val-data-after.jpeg)
    
    
    

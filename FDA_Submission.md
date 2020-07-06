@@ -9,7 +9,7 @@
 ### 1. General Information
 
 **Intended Use Statement:** 
-This algorithm is intended for use in _assisting the clinician_ in acute care setting with a speedy detection of pneumonia within a chest x-ray. The predicate device for this algorithm is a CADx device.
+This algorithm is intended for use in _assisting the clinician_ in acute care setting with a speedy detection of pneumonia within a chest x-ray. In otherwords it is to be used a a screening test for Pneumonia. The predicate device for this algorithm is a CADx device.
 
 
 **Indications for Use:**
@@ -34,6 +34,28 @@ When a test with high recall returns a negative result, you can be pretty confid
 
 **Algorithm Fow chart**
 The check_dicom function reads in a .dcm file, checks the important fields for our device, and returns a numpy array of just the imaging data.
+
+
+_Dicom flow Chart_
+
+
+![Dicom flow chart](/Figure/dicom-flow-chart.jpeg)
+
+
+
+_ Architecture flow chart_
+
+
+![Architecture flow chart](/Figure/architecture-diagram.jpeg)
+
+
+
+
+
+
+
+
+
 
 The function, check_dicom(), is required to check the image type(MODALITY), Body Part Examined (Chest), and Image position (PA or AP ) for each DICOM image and check if the input to the algorithm is valid to be predicted by our algorithm or not.
 
@@ -176,6 +198,7 @@ The dataset were labeled by qualified radiologist. In AI for medical imaging, us
 ### 6. FDA Validation Plan
 
 **Patient Population Description for FDA Validation Dataset:**
+The algorithm is used for screening for Pneumonia in a chest x-ray in acute medical and surgical admissions, acute medical and surgical wards and accident and emergency departments.
 
  Gender distribution
 

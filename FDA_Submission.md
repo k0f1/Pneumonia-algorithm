@@ -9,6 +9,8 @@
 ### 1. General Information
 
 **Intended Use Statement:** 
+More than 1 million adults are hospitalized with pneumonia and around 50,000 die from the disease every year in the US alone.
+
 This algorithm is intended for use in _assisting the clinician_ in acute care setting with a speedy detection of pneumonia within a chest x-ray. In otherwords it is to be used a a screening test for Pneumonia. The predicate device for this algorithm is a CADx device.
 
 
@@ -193,14 +195,33 @@ It is important for the algorithm to pick all postive cases of pneumonia. Missin
    
 
 ### 5. Ground Truth
-The dataset were labeled by qualified radiologist. In AI for medical imaging, using a radiologist's labels as our "true" label is often the standard of practice, and the algorithm performance is judged based on performance against an expert human.
+The NIH dataset radiologist reports were mined using Natural Language Processing (NLP) to create the disease labels from the associated radiology reports. It is expensive and laborous to hire a radiologist to label images often require several of them through a voting mechanism to obtain ground truth. NLP is fast inexpensive considerd to be >90% accurate. It can be associated with erroneous labelling. Is considerded to be the silver standard level of ground truth, with gold standard being lung biopsy which is impractical.
+
+**Llimitations** 
+Labels obtained by natural language are not a substitute for a radiologist acquired labels as they are not as reliable.  It requires a large amount of data to obtain a decent level of accuracy. There is the ethical consideration as to whether whoc will be liable for any inaccuracy arising from disease labels obtained by NLP. These limitations can impact negatively on the model's ability to detect Pneumonia acurately.
+
+Inaddition, concurrent diseases with similar intensity values can mimic pneumonia. Often the diagnosis of pnueumonia is coupled with history physical signs and blood results all of which are not available to the model. 
 
 
 
 ### 6. FDA Validation Plan
 
 **Patient Population Description for FDA Validation Dataset:**
-The algorithm is used for screening for Pneumonia in a chest x-ray in acute medical and surgical admissions, acute medical and surgical wards and accident and emergency departments.
+You will simply describe how a FDA Validation Plan would be conducted for your algorithm, rather than actually performing the assessment. Describe the following:
+
+The patient population that you would request imaging data from from your clinical partner. Make sure to include:
+
+Age ranges
+Sex
+Type of imaging modality
+Body part imaged
+Prevalence of disease of interest
+Any other diseases that should be included or excluded as comorbidities in the population
+Provide a short explanation of how you would obtain an optimal ground truth
+
+Provide a performance standard that you choose based on this
+
+
 
  Gender distribution
 
@@ -210,6 +231,16 @@ The algorithm is used for screening for Pneumonia in a chest x-ray in acute medi
  
  ![Age](/Figure/age.jpeg)
  
+ 
+ Prevalence of Pneumonia
+ 
+ ![prevalence of Pneumonia](/Figure/distribution-of-pneumonia.jpeg)
+
+ Distribution of Body Part examined
+ 
+ ![Body part examined](/Figure/body-position-examined.jpeg)
+
+ 
  Concurrent disease
 
  ![comorbidity](/Figure/comorbidity.jpeg)
@@ -218,9 +249,30 @@ The algorithm is used for screening for Pneumonia in a chest x-ray in acute medi
 
 
 **Ground Truth Acquisiion methodology**
-The label was obtained by 3 radiologist by vote. The approach of using radiologist was optimal for my project becuase the data is from NIH.
+The NIH dataset radiologist reports were mined using Natural Language Processing (NLP) to create the disease labels from the associated radiology reports.
+
+
+Often times, the gold standard(a test with the highest sensitivity and accuracy) is unattainable for an algorithm developer. 
+
+
+_Silver standard_
+The silver standard involves hiring several radiologists to each make their own diagnosis of an image. The final diagnosis is then determined by a voting system across all of the radiologists’ labels for each image. Note, sometimes radiologists’ experience levels are taken into account and votes are weighted by years of experience.
+
+
+
+The other **options** to available to establish the ground truth to compare my algorithm are:
+
+1. _Biopsy-based labeling_. Limitations: Impracticable, difficult and expensive to obtain.
+
+2. _NLP extraction_. Limitations: may not be accurate.
+
+3. _Expert (radiologist) labeling_. Limitations: expensive and requires a lot of time to come up with labeling protocols.
+
+3. _Labeling by another state-of-the-art algorithm_. Limitations: may not be accurate.
 
 
 **Algorithm Performance Standard:**
-Recall weighted threshold, was used because It is crucial not to miss positive cases.
+Recall weighted threshold, was used to minimise the number of false negatives to the bearest minimum.
+
+Best F1 scores of my model is 0.34 compares favorably with a radiologist average F1 score of 0.38 by [Pranav Rajpurkar and Jeremy Irvin et al]('https://arxiv.org/pdf/1711.05225.pdf')
 

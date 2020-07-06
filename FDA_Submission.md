@@ -150,14 +150,16 @@ Seven fully connected layers were added to the pretrained model as classifiers. 
   _This is a plot of F1 Scores v Thresholds._
   
   ![F1 Scores plot](/Figure/f1-scores.jpeg)
+  
+  Highest f1 score is 0.34 and this corresponds to a threshold value of 0.38
 
 
 
 **Final Threshold and Explanation:**
-* Best_threshold = 40
-The decision model for this threshold was based the calculation two thresholds, from  F1 scored weighted by a precision value of 0.8 and recall value of 0.8.
+* Best_threshold = 38
+The decision model for this threshold was based the calculation two thresholds, from  F1 scored weighted by a precision value of 0.8 and recall value of 0.8 and the point of highest f1 score both converged on recall weighted performance parameter as the best threshold for my device.
 
-The threshold value from the for recall of 0.8 was chosed because, it is important for the algorithm to pick all postive cases of pneumonia. Missing cases of pneumonia is not accepetable. Recall is more valuable under the circumstance where a negative test means you have a high chance of not having the disease. 
+It is important for the algorithm to pick all postive cases of pneumonia. Missing cases of pneumonia is not accepetable. Recall is more valuable under the circumstance where a negative test means you have a high chance of not having the disease. 
 
 ### 4. Databases
  (For the below, include visualizations as they are useful and relevant)
